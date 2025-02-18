@@ -26,7 +26,7 @@ function UserManagement() {
             <button>Dashboard</button>
         </Link>
       </div>
-        <table >
+        <table cellPadding={'5px'} border={'1px'}>
           <thead>
             <tr>
               <th align="center">Name</th>

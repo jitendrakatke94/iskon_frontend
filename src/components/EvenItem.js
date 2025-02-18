@@ -12,7 +12,7 @@ function EventItem({ users, items }) {
   // };
   return (
       <>
-        <table>
+        <table cellPadding={'5px'} border={'1px'}>
           <thead>
             <tr>
               <th align="center">Title</th>
