@@ -1,18 +1,19 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { fetchEvents, addEvent, updateEvent, deleteEvent } from "./EventService";
-
+import { useAuth } from "./AuthContext";
 // Create Context
 const EventContext = createContext();
 
 // Provider Component
 export function EventProvider({ children }) {
+  const { user, logout } = useAuth();
   const [events, setEvents] = useState([]);
   const [usersLoading, setUsersLoading] = useState(false);
   // Fetch events when app loads
   useEffect(() => {
     const loadData = async () => {
         setUsersLoading(true);
-        const result = await fetchEvents();
+        const result = await fetchEvents(user);
         setEvents(result);
         setUsersLoading(false);
       };

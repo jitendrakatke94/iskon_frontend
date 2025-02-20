@@ -1,10 +1,19 @@
 
 const API_URL = "http://localhost:5454/admin/"; // Replace with your API
 
-export const fetchEvents = async () => {
-    const response = await fetch(`${API_URL}events`).then((resp) => resp.json())
-    .then((newQuestion) => { return newQuestion}).catch((e) => console.log(e));
-    return response.response;
+export const fetchEvents = async (user) => {
+    console.log('userdddd', user);
+    if(user){
+        // console.log('user', user);
+        // const { user } = props;
+        let url = `${API_URL}events`;
+        const response = await fetch(url, {
+            method: "GET",
+            headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`, }
+        }).then((resp) => resp.json())
+        .then((newQuestion) => { return newQuestion}).catch((e) => console.log(e));
+        return response.response;
+    }
   };
 
 // Add a new Event

@@ -6,14 +6,17 @@ import { Link } from "react-router-dom";
 function Events(props) {
     const {user} = props;
     const { events } = useEvents();
-    console.log('events', events);
+    console.log('events', user);
     return (
         <div>
             <h2>Events</h2>
             <Link to="/addEvent">
                 <button>Add Events</button>
             </Link>
-            <EventItem user={user} items={events} />
+            {
+                user ? (<EventItem user={user} items={events} />) : 'No Events'
+            }
+            
         </div>
     );
 }

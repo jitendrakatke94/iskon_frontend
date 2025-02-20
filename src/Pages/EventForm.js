@@ -5,7 +5,7 @@ import { EventSchema } from '../components/schema/event';
 import { useFormik } from 'formik';
 import { useAuth } from "../context/AuthContext";
 import { format } from 'date-fns';
-
+import '../App.css';
 function EventForm() {
     const { user, logout } = useAuth();
     const [options, setOptions] = useState([]);
@@ -73,7 +73,7 @@ function EventForm() {
         }
     });
   return (
-    <div style={{'text-align': 'center'}}>
+    <div style={{'text-align': 'center'}} className="card">
         <div>
             <Link to={`/dashboard`}>
                 <button>Dashboard</button>
@@ -106,6 +106,7 @@ function EventForm() {
                 helperText={errors?.message}
                 onBlur={handleBlur}
                 onChange={handleChange}
+                className="input-field"
             />
             {errors.description && touched.description && <p>{errors.description}</p>}
         </div>
