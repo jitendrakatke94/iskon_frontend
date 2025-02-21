@@ -24,7 +24,7 @@ export function EventProvider({ children }) {
   
   // Add event
   const createEvent = async (eventData) => {
-    const newEvent = await addEvent(eventData);
+    const newEvent = await addEvent(eventData, user);
     // if (newEvent) setEvents([...events, newEvent]);
     // return newEvent;
     const result = await fetchEvents();
@@ -33,7 +33,7 @@ export function EventProvider({ children }) {
 
   // Edit event
   const editEvent = async (id, updatedData) => {
-    const updatedEvent = await updateEvent(id, updatedData);
+    const updatedEvent = await updateEvent(id, updatedData, user);
     // if (updatedEvent) {
     //   setEvents(events.map((event) => (event.id === id ? updatedEvent : event)));
     // }
@@ -43,7 +43,7 @@ export function EventProvider({ children }) {
 
   // Delete event
   const removeEvent = async (id) => {
-    if (await deleteEvent(id)) {
+    if (await deleteEvent(id, user)) {
       setEvents(events.filter((event) => event.id !== id));
     }
   };

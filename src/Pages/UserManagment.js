@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
+import { useAuth } from "../context/AuthContext";
+
 import { Link } from "react-router-dom";
 function UserManagement() {
+  const { user, logout } = useAuth();
     const [items, setItems] = useState([]);
     useEffect(() => {
         const loadData = async () => {
@@ -10,7 +13,7 @@ function UserManagement() {
                 mode: "cors",
                 cache: "no-cache",
                 credentials: "same-origin",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${user.token}` },
                 redirect: "follow",
                 referrerPolicy: "no-referrer",
             }).then((resp) => resp.json())
